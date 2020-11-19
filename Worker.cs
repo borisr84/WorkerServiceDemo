@@ -21,18 +21,18 @@ namespace WorkerServiceDemo
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Starting service...");
+            _logger.LogInformation("Starting {ServiceName} service...", nameof(Worker));
             _httpClient = new HttpClient();
-            _logger.LogInformation("Service is started");
+            _logger.LogInformation("Service {ServiceName} is started", nameof(Worker));
 
             return base.StartAsync(cancellationToken);
         }
 
         public override Task StopAsync(CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Stopping service...");
+            _logger.LogInformation("Stopping {ServiceName} service...", nameof(Worker));
             _httpClient.Dispose();
-            _logger.LogInformation("Service is stopped");
+            _logger.LogInformation("Service {ServiceName} is stopped", nameof(Worker));
 
             return base.StopAsync(cancellationToken);
         }
@@ -46,11 +46,11 @@ namespace WorkerServiceDemo
                     var response = await _httpClient.GetAsync("https://www.google.co.il/");
                     if (response.IsSuccessStatusCode)
                     {
-                        _logger.LogInformation("Google site is up and running");
+                        _logger.LogInformation("{SiteName} site is up and running", "Google");
                     }
                     else
                     {
-                        _logger.LogError("Google is unreachable");
+                        _logger.LogError("{SiteName} is unreachable", "Google");
                     }
                     await Task.Delay(2000, stoppingToken);
                 }

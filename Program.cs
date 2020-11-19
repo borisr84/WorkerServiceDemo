@@ -18,7 +18,7 @@ namespace WorkerServiceDemo
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(loggerFactory => loggerFactory.AddEventLog().AddConsole())
+                .ConfigureLogging(loggerFactory => loggerFactory.AddEventLog().AddConsole().AddSeq())
                 .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
