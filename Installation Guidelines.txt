@@ -1,0 +1,11 @@
+Powershell (Admin required) commands
+
+
+Add: 
+sc.exe create ServiceWorkerDemo binpath= C:\temp\WorkerDemo\WorkerServiceDemo.exe start= auto
+
+Delete (Service has to be stopped first): 
+sc.exe delete ServiceWorkerDemo
+
+Add event viewer entry:
+New-EventLog -LogName WSWatchdogDemo -Source WSDemo
